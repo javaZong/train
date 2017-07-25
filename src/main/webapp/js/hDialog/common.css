@@ -1,0 +1,7 @@
+/*------------------- µ¯³ö²ãÑù -----------------------*/
+#HBox{width:300px;height:auto;margin:0 auto;box-shadow:1px 1px 5px #333;-webkit-box-shadow:1px 1px 5px #333;display:none;background-color:#ffffff;position:fixed;top:50%;left:50%;margin:-120px 0 0 -150px;z-index:100000;border:1px solid #ddd;border-radius:3px;}
+#HCloseBtn{width:20px;height:20px;line-height:20px;display:inline-block;cursor:pointer;color:#fff;text-align:center;position:absolute;top:8px;right:8px;border-radius:3px;}
+#HCloseBtn:hover{background:#39F!important;color:#fff;}
+#HCloseBtn span{font-size:18px;font-family: Helvetica, STHeiti;font-weight:normal;}
+#HLoading{border-radius:3px;}
+.HTooltip{border-radius:3px;}
