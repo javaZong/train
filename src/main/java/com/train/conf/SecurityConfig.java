@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.header.HeaderWriter;
 import org.springframework.security.web.header.HeaderWriterFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().ignoringAntMatchers("/resources/image/*").and().formLogin().loginPage("/login.jsp").and().formLogin().loginProcessingUrl("/login").and()
+
+        http.authorizeRequests().antMatchers("/train/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .and().formLogin().loginPage("/dologin").and().formLogin().loginProcessingUrl("/login").and()
                 .formLogin().defaultSuccessUrl("/admin").and().formLogin().failureUrl("/?error=1");
-        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+
         http.rememberMe().tokenValiditySeconds(1209600).and().rememberMe().rememberMeParameter("remember-me");
         CharacterEncodingFilter encodeFilter = new CharacterEncodingFilter();
         encodeFilter.setEncoding("utf-8");

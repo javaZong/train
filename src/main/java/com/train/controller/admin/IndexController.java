@@ -20,4 +20,5 @@ public class IndexController {
         return "/admin/"+page;
     }
 
+
 }
