@@ -33,7 +33,7 @@
 
         <input value="登录" style="width:100%;" type="submit" id="loginBtn" >
         <hr class="hr20">
-
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 
 

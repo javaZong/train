@@ -2,6 +2,7 @@ package com.train.service;
 
 import com.train.dao.mapper.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -14,9 +15,15 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    private Md5PasswordEncoder md5 = new Md5PasswordEncoder();
 
+    /**
+     * 添加用户s
+     * @param username
+     * @param password
+     */
     public void addUser(String username, String password) {
-       int i= userDao.addUser(username,password);
-       System.out.println("adduser"+i);
+        int i = userDao.addUser(username, md5.encodePassword(password,null));
+        System.out.println("adduser" + i);
     }
 }

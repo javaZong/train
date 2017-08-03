@@ -35,10 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/train/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .and().formLogin().loginPage("/dologin").and().formLogin().loginProcessingUrl("/login").and()
+        http.csrf().ignoringAntMatchers("/train/**").and().formLogin().loginPage("/dologin").and().formLogin().loginProcessingUrl("/login").and()
                 .formLogin().defaultSuccessUrl("/admin").and().formLogin().failureUrl("/?error=1");
+
+
+//        http.authorizeRequests().antMatchers("/train/**").permitAll()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .and().formLogin().loginPage("/dologin").and().formLogin().loginProcessingUrl("/login").and()
+//                .formLogin().defaultSuccessUrl("/admin").and().formLogin().failureUrl("/?error=1");
 
         http.rememberMe().tokenValiditySeconds(1209600).and().rememberMe().rememberMeParameter("remember-me");
         CharacterEncodingFilter encodeFilter = new CharacterEncodingFilter();
